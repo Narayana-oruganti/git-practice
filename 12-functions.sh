@@ -15,11 +15,13 @@ VALIDATE(){
 
 }
 
-if [ $USERID -ne 0 ]
-then
-    echo "Please run thgis script with root priviliges"
-    exit 1
-fi
+CHECK_ROOT(){
+    if [ $USERID -ne 0 ]
+    then
+        echo "Please run thgis script with root priviliges"
+        exit 1
+    fi
+}
 
 
 dnf install git 

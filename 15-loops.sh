@@ -25,7 +25,7 @@ VALIDATE(){
 
 CHECK_ROOT
 
-sh 15-loops.sh git mysql nginx postfix
+#sh 15-loops.sh git mysql nginx postfix
 for package in $@   # $@ refers all arguments passed throug it
 do
   dhf install $PACKAGE 

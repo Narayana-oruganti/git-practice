@@ -2,7 +2,7 @@
 
 
 USERID=$(id -u)
-#echo "User ID is: $USERID"
+echo "User ID is: $USERID"
 
 VALIDATE(){
     if [ $1 -ne 0 ]

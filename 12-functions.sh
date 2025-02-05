@@ -1,47 +1,45 @@
 #!/bin/bash
 
-
 USERID=$(id -u)
-echo "User ID is: $USERID"
-
-VALIDATE(){
-    if [ $1 -ne 0 ]
-    then
-        echo "$2 is not...success"
-        exit 1
-    else
-        echo "$2 is...success"
-    fi       
-
-}
 
 CHECK_ROOT(){
     if [ $USERID -ne 0 ]
     then
-        echo "Please run thgis script with root priviliges"
+        echo "Please run this script with root priveleges"
         exit 1
     fi
 }
 
+VALIDATE(){
+    if [ $1 -ne 0 ]
+    then
+        echo "$2 is...FAILED"
+        exit 1
+    else
+        echo "$2 is...SUCCESS"
+    fi
+}
 
-dnf install git 
+CHECK_ROOT
+
+dnf list installed git
 
 if [ $? -ne 0 ]
 then
     echo "Git is not installed, going to install it.."
     dnf install git -y
-    VALIDATE $? "installing Git"       
+    VALIDATE $? "Installing Git"
 else
-    echo "Git is already installed, nothing to do.."    
+    echo "Git is already installed, nothing to do.."
 fi
 
-dnf install mysql
+dnf list installed mysql
 
 if [ $? -ne 0 ]
-then 
-    echo "Mysql is not installed, going to install it .."
+then
+    echo "MySQL is not installed...going to install"
     dnf install mysql -y
-    VALIDATE $? "installing Mysql"
+    VALIDATE $? "Installing MySQL"
 else
-    echo "Mysql is already installed, nothing to do.."
-fi            
+    echo "MySQL is already installed..nothing to do"
+fi           
